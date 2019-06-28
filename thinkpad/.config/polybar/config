@@ -1,0 +1,78 @@
+[bar/main]
+monitor = ${env:MONITOR:eDP-1}
+width = 100%
+height = 28
+#font-0 = IBM Plex Mono:style=Light:size=10
+font-0 = InputMono:style=Thin:size=11;2
+
+modules-left = i3
+modules-right = alsa battery-primary date
+
+background = #1f1f1f
+foreground = #cccccc
+
+
+[module/battery-backup]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+label-charging = "(%percentage%%)]"
+label-discharging = "(%percentage%%)]"
+label-full = "(%percentage%%)]"
+
+
+[module/battery-primary]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+poll-interval = 5
+label-charging = "[Charging: %percentage%%]"
+label-discharging = "[Battery: %percentage%%]"
+
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %Y-%m-%d%
+time = %H:%M
+label = %date% %time%
+label-padding = 2
+
+
+[module/i3]
+pin-workspaces = true
+type = internal/i3
+format = <label-mode> <label-state>
+index-sort = true
+
+label-focused = %index%
+label-focused-underline = #fba922
+label-focused-background = #3f3f3f
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+
+[module/alsa]
+type = internal/alsa
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 9
+mapped = true
+interval = 5
+format-volume = <label-volume>
+label-muted = [muted]
+label-muted-background = #50FF0000
+label-muted-padding = 2
+label-muted-margin = 2
+label-volume = [Volume: %percentage%%]
+label-volume-background = #3f3f3f
+label-volume-padding = 2
+label-volume-margin = 2

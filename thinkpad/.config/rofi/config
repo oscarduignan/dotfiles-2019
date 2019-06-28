@@ -1,0 +1,5 @@
+rofi.font:          IBM Plex Sans Mono 16
+rofi.font:          InputMono Thin 14
+rofi.theme: /home/oscar/.nix-profile/share/rofi/themes/paper-float.rasi
+rofi.run-command: '{cmd}'
+rofi.terminal: konsole
