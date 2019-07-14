@@ -1,0 +1,10 @@
+#!/run/current-system/sw/bin/bash
+cd ~/.dotfiles
+
+RED='\033[0;31m'
+
+[ "$#" -eq 1 ] || (echo -e "${RED}Message required to commit changes\n" && git status && exit 1);
+
+git add .
+git commit -m "$1"
+git push
