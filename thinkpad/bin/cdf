@@ -1,11 +1,15 @@
 #!/run/current-system/sw/bin/bash
 cd ~/.dotfiles
 
-START_RED='\033[0;31m'
-END_COLOR='\033[0m'
-
-[ "$#" -eq 1 ] || (echo -e "${START_RED}Message required to commit changes${END_COLOR}\n" && git status && exit 1);
-
-git add .
-git commit -m "$1"
-git push
+if [ "$#" -eq 1 ] 
+then
+	git add .
+	git commit -m "$1"
+	git push
+else
+	START_RED='\033[0;31m'
+	END_COLOR='\033[0m'
+	echo -e "${START_RED}Message required to commit changes${END_COLOR}\n"
+	git status
+	exit 1
+fi
