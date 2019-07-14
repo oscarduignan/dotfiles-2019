@@ -38,5 +38,6 @@
   home.packages = with pkgs; [
     zim
     encfs
+    fzf
   ];
 }
