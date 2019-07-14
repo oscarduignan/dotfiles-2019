@@ -12,8 +12,30 @@
   };
 
   programs.neovim = {
-    enable = true;
     viAlias = true;
     vimAlias = true;
+    configure = {
+      plug.plugins = with pkgs.vimPlugins; [
+        fzfWrapper
+	fzf-vim
+	vim-airline
+	vim-gitgutter
+	vim-elixir
+	vim-javascript
+	vim-nix
+	nerdtree
+	nerdtree-git-plugin
+	gruvbox
+      ];
+      customRC = ''
+        set mouse=a
+        colorscheme gruvbox
+      '';
+    };
   };
+
+  home.packages = with pkgs; [
+    zim
+    encfs
+  ];
 }
