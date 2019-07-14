@@ -1,6 +1,18 @@
 { config, pkgs, ... }:
 
-{
+let
+  buildVimPlugin = pkgs.vimUtils.buildVimPluginFrom2Nix;
+
+  vimWhichKey = buildVimPlugin {
+    name = "vim-which-key";
+    src = builtins.fetchGit {
+      url = "https://github.com/liuchengxu/vim-which-key.git";
+      rev = "ccb656f30ccafc00cf633fa4b42540739f538356";
+    };
+    dependencies = [];
+  };
+
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -27,10 +39,16 @@
 	nerdtree
 	nerdtree-git-plugin
 	gruvbox
+        # custom
+        vimWhichKey
       ];
       customRC = ''
         set mouse=a
         colorscheme gruvbox
+        let g:mapleader = "\<Space>"
+        let g:maplocalleader = ','
+        nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+        nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
       '';
     };
   };
